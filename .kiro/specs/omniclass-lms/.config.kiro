@@ -1,0 +1,7 @@
+{
+  "specType": "feature",
+  "workflowType": "design-first",
+  "featureName": "omniclass-lms",
+  "designArtifacts": ["high-level-design", "low-level-design"],
+  "createdAt": "2026-10-23T00:00:00.000Z"
+}

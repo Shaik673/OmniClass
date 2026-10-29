@@ -1,0 +1,26 @@
+# Local credentials and runtime configuration
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Build output and dependencies
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+__pycache__/
+**/__pycache__/
+.venv/
+venv/
+
+# Runtime, logs, generated assets
+*.log
+*.pid
+coverage/
+playwright-report/
+test-results/
+nginx/ssl/*
+!nginx/ssl/.gitkeep
