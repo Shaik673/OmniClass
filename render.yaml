@@ -28,3 +28,4 @@ services:
         value: gemini-2.0-flash
       - key: REDIS_URL
         sync: false
+

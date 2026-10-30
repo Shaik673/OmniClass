@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ArrowRight, Shield, Sparkles, GraduationCap, Users, ShieldAlert } from 'lucide-react';
+import { ChevronLeft, ArrowRight, Shield } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { api, getError } from '../../api.js';
 import OmniClassLogo from '../../components/shared/OmniClassLogo.jsx';
 
 export default function AuthPage({ mode, onUser, onTheme }) {
   const [busy, setBusy] = useState(false);
-  const [demoBusy, setDemoBusy] = useState('');
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();
 
@@ -33,55 +32,9 @@ export default function AuthPage({ mode, onUser, onTheme }) {
     }
   };
 
-  const handleDemoLogin = async (role) => {
-    setDemoBusy(role);
-    try {
-      const { data } = await api.post('/auth/demo-login', { role });
-      const user = data?.data?.user || data?.user;
-      onUser(user);
-      if (user?.theme && onTheme) onTheme(user.theme);
-      toast.success(`Signed in as ${role.toUpperCase()} demo user`);
-      navigate(role === 'admin' ? '/admin' : role === 'instructor' ? '/teaching' : '/dashboard');
-    } catch (err) {
-      // Fallback: try standard login with seeded credentials
-      try {
-        const credentials = {
-          student: { email: 'student@northstar.local', password: 'ChangeMe123!' },
-          instructor: { email: 'instructor@northstar.local', password: 'ChangeMe123!' },
-          admin: { email: 'admin@northstar.local', password: 'ChangeMe123!' },
-        }[role];
-        const { data } = await api.post('/auth/login', credentials);
-        const user = data?.data?.user || data?.user;
-        onUser(user);
-        toast.success(`Signed in as ${role.toUpperCase()} demo user`);
-        navigate(role === 'admin' ? '/admin' : role === 'instructor' ? '/teaching' : '/dashboard');
-      } catch (e2) {
-        toast.error(getError(e2));
-      }
-    } finally {
-      setDemoBusy('');
-    }
-  };
-
   const handleOAuth = (provider) => {
     // Initiate full browser OAuth flow via API endpoint
     window.location.href = `/api/v1/auth/${provider}`;
-  };
-
-  const handleTestSocialLogin = async (provider) => {
-    setDemoBusy(provider);
-    try {
-      const { data } = await api.post('/auth/oauth/test-login', { provider });
-      const user = data?.data?.user || data?.user;
-      onUser(user);
-      if (user?.theme && onTheme) onTheme(user.theme);
-      toast.success(data?.data?.message || `Signed in with ${provider.toUpperCase()}`);
-      navigate('/dashboard');
-    } catch (err) {
-      toast.error(getError(err));
-    } finally {
-      setDemoBusy('');
-    }
   };
 
   return (
@@ -116,45 +69,6 @@ export default function AuthPage({ mode, onUser, onTheme }) {
         <Link to="/" className="back-home">
           <ChevronLeft size={16} /> Back home
         </Link>
-
-        {/* 1-Click Demo Accounts Bar */}
-        <div className="p-4 mb-6 rounded-2xl bg-indigo-950/30 border border-indigo-800/40 space-y-2.5">
-          <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-indigo-300">
-            <span className="flex items-center gap-1.5">
-              <Sparkles size={14} className="text-indigo-400" /> Instant Demo Access
-            </span>
-            <span className="text-[10px] opacity-70">Pre-seeded Institutional Data</span>
-          </div>
-          <div className="grid grid-cols-3 gap-2">
-            <button
-              type="button"
-              onClick={() => handleDemoLogin('student')}
-              disabled={Boolean(demoBusy)}
-              className="py-2 px-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-xs font-medium text-slate-200 border border-slate-700 flex flex-col items-center gap-1 transition-all"
-            >
-              <GraduationCap size={16} className="text-emerald-400" />
-              <span>{demoBusy === 'student' ? 'Signing in...' : 'Student'}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleDemoLogin('instructor')}
-              disabled={Boolean(demoBusy)}
-              className="py-2 px-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-xs font-medium text-slate-200 border border-slate-700 flex flex-col items-center gap-1 transition-all"
-            >
-              <Users size={16} className="text-indigo-400" />
-              <span>{demoBusy === 'instructor' ? 'Signing in...' : 'Instructor'}</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => handleDemoLogin('admin')}
-              disabled={Boolean(demoBusy)}
-              className="py-2 px-2.5 rounded-xl bg-slate-800/80 hover:bg-slate-700/80 text-xs font-medium text-slate-200 border border-slate-700 flex flex-col items-center gap-1 transition-all"
-            >
-              <ShieldAlert size={16} className="text-amber-400" />
-              <span>{demoBusy === 'admin' ? 'Signing in...' : 'Admin'}</span>
-            </button>
-          </div>
-        </div>
 
         {/* Social Authentication */}
         <div className="space-y-2 mb-6">
@@ -212,36 +126,6 @@ export default function AuthPage({ mode, onUser, onTheme }) {
               </svg>
               <span>Facebook</span>
             </button>
-          </div>
-
-          {/* Quick Social Test Buttons */}
-          <div className="pt-2 flex items-center justify-between text-[11px] text-slate-400">
-            <span>Instant Social Test:</span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                onClick={() => handleTestSocialLogin('google')}
-                className="hover:text-indigo-400 underline"
-              >
-                Google Test
-              </button>
-              <span>·</span>
-              <button
-                type="button"
-                onClick={() => handleTestSocialLogin('github')}
-                className="hover:text-indigo-400 underline"
-              >
-                GitHub Test
-              </button>
-              <span>·</span>
-              <button
-                type="button"
-                onClick={() => handleTestSocialLogin('facebook')}
-                className="hover:text-indigo-400 underline"
-              >
-                Facebook Test
-              </button>
-            </div>
           </div>
         </div>
 

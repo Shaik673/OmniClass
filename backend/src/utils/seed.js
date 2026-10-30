@@ -16,8 +16,9 @@ import Notification from '../models/Notification.js';
 import StudySession from '../progress/StudySession.js';
 import { coursesData } from './coursesSeedData.js';
 
-if (process.env.NODE_ENV === 'production') {
-  throw new Error('Development seed data cannot run in production.');
+if (process.env.NODE_ENV === 'production' && process.env.ALLOW_PROD_SEED !== 'true') {
+  console.log('Notice: Production mode detected. To seed initial catalog data in production, set ALLOW_PROD_SEED=true');
+  process.exit(0);
 }
 
 export async function seedDatabase() {
