@@ -22,10 +22,12 @@ const issue = (res, user) => {
     config.jwt.secret,
     { expiresIn: config.jwt.accessExpiry }
   );
+  const isProd = config.env === 'production';
+  const cookieSameSite = process.env.COOKIE_SAME_SITE || (isProd ? 'none' : 'lax');
   res.cookie('oc_session', token, {
     httpOnly: true,
-    sameSite: 'lax',
-    secure: config.env === 'production',
+    sameSite: cookieSameSite,
+    secure: isProd ? true : false,
     maxAge: 2 * 60 * 60 * 1000,
   });
 };
@@ -699,7 +701,9 @@ router.post('/oauth/test-login', authLimiter, body('provider').isIn(['google', '
 
 // ─── POST /auth/logout ─────────────────────────────────────────────────────
 router.post('/logout', (_req, res) => {
-  res.clearCookie('oc_session', { httpOnly: true, sameSite: 'lax', secure: config.env === 'production' })
+  const isProd = config.env === 'production';
+  const cookieSameSite = process.env.COOKIE_SAME_SITE || (isProd ? 'none' : 'lax');
+  res.clearCookie('oc_session', { httpOnly: true, sameSite: cookieSameSite, secure: isProd ? true : false })
     .json({ success: true, data: { signedOut: true } });
 });
 

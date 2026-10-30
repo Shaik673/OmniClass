@@ -54,8 +54,13 @@ app.use(helmet({
 
 app.use(cors({
   origin: (origin, callback) => {
-    const allowed = [config.frontendUrl, 'http://localhost:5173', 'http://127.0.0.1:5173'];
-    if (!origin || allowed.includes(origin)) return callback(null, true);
+    if (!origin) return callback(null, true);
+    const cleanOrigin = origin.replace(/\/$/, '');
+    const cleanFrontend = (config.frontendUrl || '').replace(/\/$/, '');
+    const allowed = [cleanFrontend, 'http://localhost:5173', 'http://127.0.0.1:5173'];
+    if (allowed.includes(cleanOrigin) || cleanOrigin.endsWith('.vercel.app') || cleanOrigin.endsWith('.onrender.com') || cleanOrigin.endsWith('.netlify.app')) {
+      return callback(null, true);
+    }
     return callback(new Error(`CORS: origin ${origin} not allowed`));
   },
   credentials: true,
