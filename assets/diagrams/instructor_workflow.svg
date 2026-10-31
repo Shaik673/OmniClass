@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 210" width="750" height="210">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#059669" />
+    </marker>
+  </defs>
+  <rect width="750" height="210" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Step 1 -->
+  <g filter="url(#shadow)">
+    <rect x="20" y="20" width="125" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="30" y="40" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">1. Faculty Auth</text>
+    <text x="30" y="58" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Provisioned Account</text>
+    <text x="30" y="73" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Role: 'instructor'</text>
+  </g>
+  <path d="M 145 57 L 165 57" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 2 -->
+  <g filter="url(#shadow)">
+    <rect x="170" y="20" width="125" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="180" y="40" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">2. Course Studio</text>
+    <text x="180" y="58" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Title, Slug, Category</text>
+    <text x="180" y="73" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Tier &amp; Pro Pricing</text>
+  </g>
+  <path d="M 295 57 L 315 57" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 3 -->
+  <g filter="url(#shadow)">
+    <rect x="320" y="20" width="125" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="330" y="40" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">3. Author Modules</text>
+    <text x="330" y="58" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">5 Structured Modules</text>
+    <text x="330" y="73" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Markdown &amp; Code</text>
+  </g>
+  <path d="M 445 57 L 465 57" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 4 -->
+  <g filter="url(#shadow)">
+    <rect x="470" y="20" width="125" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="480" y="40" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">4. Assignments</text>
+    <text x="480" y="58" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Deadlines &amp; Rubrics</text>
+    <text x="480" y="73" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Max points criteria</text>
+  </g>
+  <path d="M 595 57 L 615 57" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 5 -->
+  <g filter="url(#shadow)">
+    <rect x="620" y="20" width="115" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="630" y="40" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">5. Submit Audit</text>
+    <text x="630" y="58" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Draft Status</text>
+    <text x="630" y="73" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Pending review</text>
+  </g>
+
+  <!-- Curve Down Arrow from Step 5 to Step 6 -->
+  <path d="M 677 95 L 677 110 Q 677 120 665 120 L 590 120" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Row 2: Steps 6 to 9 -->
+  <!-- Step 6 -->
+  <g filter="url(#shadow)">
+    <rect x="430" y="115" width="150" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="440" y="135" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">6. Admin Review</text>
+    <text x="440" y="153" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Quality verification</text>
+    <text x="440" y="168" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Status &rarr; 'published'</text>
+  </g>
+  <path d="M 430 152 L 405 152" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 7 -->
+  <g filter="url(#shadow)">
+    <rect x="250" y="115" width="150" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="260" y="135" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">7. Grade Queue</text>
+    <text x="260" y="153" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Review GitHub PRs</text>
+    <text x="260" y="168" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Scoring &amp; comments</text>
+  </g>
+  <path d="M 250 152 L 225 152" stroke="#059669" stroke-width="2" marker-end="url(#arrow-green)"/>
+
+  <!-- Step 8 -->
+  <g filter="url(#shadow)">
+    <rect x="70" y="115" width="150" height="75" rx="6" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <text x="80" y="135" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">8. Cohort Analytics</text>
+    <text x="80" y="153" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Completion rate &amp; scores</text>
+    <text x="80" y="168" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Intervention alerts</text>
+  </g>
+</svg>

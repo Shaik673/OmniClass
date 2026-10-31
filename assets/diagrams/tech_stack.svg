@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 250" width="750" height="250">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="750" height="250" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Col 1: Frontend -->
+  <g filter="url(#shadow)">
+    <rect x="20" y="20" width="165" height="210" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M 20 28 Q 20 20 28 20 L 177 20 Q 185 20 185 28 L 185 52 L 20 52 Z" fill="#2563eb"/>
+    <text x="102" y="38" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" text-anchor="middle">FRONTEND LAYER</text>
+    <text x="32" y="76" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">&bull; React 18.2 SPA</text>
+    <text x="32" y="96" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Vite 5.0 Bundler</text>
+    <text x="32" y="116" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Tailwind CSS 3.4</text>
+    <text x="32" y="136" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Framer Motion</text>
+    <text x="32" y="156" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Lucide React Icons</text>
+    <text x="32" y="176" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Recharts Data Charts</text>
+    <text x="32" y="196" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Web Speech Synthesis</text>
+    <text x="32" y="216" fill="#1d4ed8" font-family="Segoe UI, sans-serif" font-size="8" font-weight="600">Client-Side Rendering</text>
+  </g>
+
+  <!-- Col 2: Backend -->
+  <g filter="url(#shadow)">
+    <rect x="200" y="20" width="165" height="210" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M 200 28 Q 200 20 208 20 L 357 20 Q 365 20 365 28 L 365 52 L 200 52 Z" fill="#0f172a"/>
+    <text x="282" y="38" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" text-anchor="middle">BACKEND LAYER</text>
+    <text x="212" y="76" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">&bull; Node.js 22 LTS</text>
+    <text x="212" y="96" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Express.js 4.18</text>
+    <text x="212" y="116" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; JWT HttpOnly Session</text>
+    <text x="212" y="136" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Bcrypt Password Hash</text>
+    <text x="212" y="156" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Express Validator</text>
+    <text x="212" y="176" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Helmet &amp; Rate Limiter</text>
+    <text x="212" y="196" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Morgan Request Trace</text>
+    <text x="212" y="216" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="8" font-weight="600">Modular REST API</text>
+  </g>
+
+  <!-- Col 3: Data & Storage -->
+  <g filter="url(#shadow)">
+    <rect x="380" y="20" width="165" height="210" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M 380 28 Q 380 20 388 20 L 537 20 Q 545 20 545 28 L 545 52 L 380 52 Z" fill="#059669"/>
+    <text x="462" y="38" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" text-anchor="middle">DATA &amp; CACHE</text>
+    <text x="392" y="76" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">&bull; MongoDB Atlas (M0)</text>
+    <text x="392" y="96" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Mongoose 8.0 ODM</text>
+    <text x="392" y="116" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Compound Indexes</text>
+    <text x="392" y="136" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Redis Cloud (TLS)</text>
+    <text x="392" y="156" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; BullMQ Task Queues</text>
+    <text x="392" y="176" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Atomic Transactions</text>
+    <text x="392" y="196" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Zero Mock Fallback</text>
+    <text x="392" y="216" fill="#059669" font-family="Segoe UI, sans-serif" font-size="8" font-weight="600">Persistent NoSQL</text>
+  </g>
+
+  <!-- Col 4: AI & Cloud -->
+  <g filter="url(#shadow)">
+    <rect x="560" y="20" width="170" height="210" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+    <path d="M 560 28 Q 560 20 568 20 L 722 20 Q 730 20 730 28 L 730 52 L 560 52 Z" fill="#7c3aed"/>
+    <text x="645" y="38" fill="#ffffff" font-family="Segoe UI, sans-serif" font-size="11" font-weight="700" text-anchor="middle">AI &amp; CLOUD INFRA</text>
+    <text x="572" y="76" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">&bull; Gemini 2.0 Flash</text>
+    <text x="572" y="96" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Multi-Model Fallbacks</text>
+    <text x="572" y="116" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Vercel Edge CDN</text>
+    <text x="572" y="136" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Render Web Service</text>
+    <text x="572" y="156" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Razorpay Payments</text>
+    <text x="572" y="176" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; Brevo SMTP Mail</text>
+    <text x="572" y="196" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">&bull; LeetCode GraphQL</text>
+    <text x="572" y="216" fill="#7c3aed" font-family="Segoe UI, sans-serif" font-size="8" font-weight="600">Enterprise Cloud</text>
+  </g>
+</svg>

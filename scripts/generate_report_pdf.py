@@ -9,6 +9,7 @@ def build_pdf_report():
     md_path = os.path.join(base_dir, "PROJECT_REPORT.md")
     html_path = os.path.join(base_dir, "PROJECT_REPORT.html")
     pdf_path = os.path.join(base_dir, "OmniClass_Project_Report.pdf")
+    assets_dir = os.path.join(base_dir, "assets", "diagrams")
 
     print(f"Reading {md_path}...")
     with open(md_path, "r", encoding="utf-8") as f:
@@ -26,13 +27,37 @@ def build_pdf_report():
     md_text = md_text.replace("–", "&ndash;")
     md_text = md_text.replace("•", "&bull;")
 
-    # Replace mermaid blocks with div.mermaid-box so mermaid.js renders them
-    def mermaid_repl(match):
-        content = match.group(1).strip()
-        # Ensure any ampersands in mermaid are preserved
-        return f'\n\n<div class="mermaid-box"><pre class="mermaid">\n{content}\n</pre></div>\n\n'
+    # Visual diagram replacements for the 7 mermaid blocks
+    diagram_files = [
+        ("fullstack_flow.svg", "Figure 1.1: OmniClass Full-Stack Application Flow & Communication"),
+        ("functional_modules.svg", "Figure 5.1: 10 Core Functional Modules Architecture"),
+        ("student_workflow.svg", "Figure 8.1: Learner Journey & Certification Lifecycle"),
+        ("instructor_workflow.svg", "Figure 8.2: Faculty Curriculum Authoring & Review Workflow"),
+        ("tech_stack.svg", "Figure 11.1: 4-Tier Technology Stack Matrix"),
+        ("system_architecture.svg", "Figure 12.1: Enterprise 4-Tier Cloud Architecture"),
+        ("development_roadmap.svg", "Figure 16.1: 10-Day Full-Stack Engineering Roadmap (All 10 Days Completed)")
+    ]
 
-    md_text = re.sub(r'```mermaid\s*\n(.*?)```', mermaid_repl, md_text, flags=re.DOTALL)
+    mermaid_blocks = list(re.finditer(r'```mermaid\s*\n(.*?)```', md_text, flags=re.DOTALL))
+    print(f"Found {len(mermaid_blocks)} mermaid blocks to replace with visual pictures...")
+
+    # Replace mermaid blocks in reverse order so offsets don't change
+    for idx in reversed(range(len(mermaid_blocks))):
+        m = mermaid_blocks[idx]
+        svg_filename, caption = diagram_files[idx]
+        svg_file_path = os.path.join(assets_dir, svg_filename)
+        
+        with open(svg_file_path, "r", encoding="utf-8") as sf:
+            svg_content = sf.read()
+
+        replacement = f'''\n\n<div class="diagram-wrapper">
+  <div class="diagram-title-bar">
+    <span class="diagram-pill">ARCHITECTURE VISUAL</span>
+    <span class="diagram-caption">{caption}</span>
+  </div>
+  {svg_content}
+</div>\n\n'''
+        md_text = md_text[:m.start()] + replacement + md_text[m.end():]
 
     # Convert markdown to HTML
     body_html = markdown.markdown(
@@ -60,18 +85,14 @@ def build_pdf_report():
         '<span class="check-box">&#9634;</span>'
     )
 
-    # Format section headings with page breaks on key sections
-    # Major sections that start on a fresh page:
-    break_sections = {1, 3, 5, 6, 8, 9, 10, 11, 12, 13, 14, 16, 17, 18, 20, 22}
-
+    # Format section headings without forcing hard empty-page breaks
     def h2_repl(match):
         content = match.group(1).strip()
         num_match = re.match(r'^(\d+)\.\s*(.*)$', content)
         if num_match:
             sec_num = int(num_match.group(1))
             title = num_match.group(2)
-            break_class = " page-break-before" if sec_num in break_sections else ""
-            return f'<div class="section-title-wrap{break_class}"><span class="section-pill">SECTION {sec_num}</span><h2 class="section-heading">{title}</h2></div>'
+            return f'<div class="section-title-wrap"><span class="section-pill">SECTION {sec_num}</span><h2 class="section-heading">{title}</h2></div>'
         return f'<h2 class="section-heading">{content}</h2>'
 
     body_html = re.sub(r'<h2>(.*?)</h2>', h2_repl, body_html)
@@ -92,24 +113,11 @@ def build_pdf_report():
 <head>
 <meta charset="utf-8">
 <title>OmniClass LMS - Major Project Report</title>
-<!-- Mermaid for vector diagrams -->
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {{
-    mermaid.initialize({{
-        startOnLoad: true,
-        theme: 'neutral',
-        securityLevel: 'loose',
-        flowchart: {{ useMaxWidth: false, htmlLabels: true, curve: 'basis' }},
-        gantt: {{ axisFormat: '%b %d', barHeight: 22, fontSize: 11 }}
-    }});
-}});
-</script>
 <style>
 /* Page & Print Setup */
 @page {{
     size: A4 portrait;
-    margin: 18mm 16mm 18mm 16mm;
+    margin: 16mm 15mm 16mm 15mm;
     @bottom-center {{
         content: "OmniClass LMS | Major Project Technical Report | Quillance Infotech Pvt. Ltd.";
         font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -132,17 +140,12 @@ document.addEventListener("DOMContentLoaded", () => {{
 
 body {{
     font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Inter', Roboto, sans-serif;
-    font-size: 9.3pt;
-    line-height: 1.55;
+    font-size: 9.15pt;
+    line-height: 1.48;
     color: #1e293b;
     background-color: #ffffff;
     margin: 0;
     padding: 0;
-}}
-
-.page-break-before {{
-    page-break-before: always !important;
-    break-before: page !important;
 }}
 
 /* Top Official Header Banner */
@@ -153,6 +156,8 @@ body {{
     border-radius: 8px;
     margin-bottom: 22px;
     box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+    page-break-inside: avoid;
+    break-inside: avoid;
 }}
 
 .banner-top-row {{
@@ -205,12 +210,12 @@ body {{
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: 24px;
-    margin-bottom: 14px;
+    margin-top: 26px;
+    margin-bottom: 12px;
     padding-bottom: 8px;
     border-bottom: 2px solid #e2e8f0;
-    page-break-after: avoid;
-    break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
 }}
 
 .section-pill {{
@@ -231,7 +236,8 @@ h1 {{
     color: #0f172a;
     margin-top: 22px;
     margin-bottom: 10px;
-    page-break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
 }}
 
 h2.section-heading {{
@@ -246,19 +252,20 @@ h3 {{
     font-size: 11pt;
     font-weight: 700;
     color: #1e3a8a;
-    margin-top: 16px;
+    margin-top: 18px;
     margin-bottom: 8px;
-    page-break-after: avoid;
-    break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
 }}
 
 h4 {{
     font-size: 9.8pt;
     font-weight: 700;
     color: #334155;
-    margin-top: 12px;
+    margin-top: 14px;
     margin-bottom: 6px;
-    page-break-after: avoid;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
 }}
 
 p {{
@@ -267,14 +274,60 @@ p {{
     text-align: justify;
 }}
 
+/* Visual Diagram Container */
+.diagram-wrapper {{
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 14px 10px 14px;
+    margin: 16px 0 20px 0;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.05);
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    text-align: center;
+}}
+
+.diagram-title-bar {{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #f1f5f9;
+}}
+
+.diagram-pill {{
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 7pt;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 3px;
+}}
+
+.diagram-caption {{
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: #475569;
+}}
+
+.diagram-wrapper svg {{
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+}}
+
 /* Tables */
 table {{
     width: 100%;
     border-collapse: collapse;
     margin: 14px 0 18px 0;
     font-size: 8.6pt;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
     border-radius: 6px;
     overflow: hidden;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -314,8 +367,8 @@ tr:hover td {{
     border-radius: 6px;
     padding: 12px 16px;
     margin: 16px 0;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
 }}
 
 .callout-content {{
@@ -344,8 +397,8 @@ pre {{
     overflow-x: auto;
     border: 1px solid #334155;
     margin: 12px 0 16px 0;
-    page-break-inside: avoid;
-    break-inside: avoid;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
 }}
 
 code {{
@@ -399,30 +452,6 @@ pre code {{
     color: #16a34a;
 }}
 
-/* Mermaid Box */
-.mermaid-box {{
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 16px 0 20px 0;
-    text-align: center;
-    page-break-inside: avoid;
-    break-inside: avoid;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-}}
-
-.mermaid {{
-    display: flex;
-    justify-content: center;
-    margin: 0 auto;
-}}
-
-.mermaid svg {{
-    max-width: 100% !important;
-    height: auto !important;
-}}
-
 /* Lists */
 ul, ol {{
     margin-top: 0;
@@ -438,19 +467,21 @@ li {{
 hr {{
     border: none;
     border-top: 1px solid #e2e8f0;
-    margin: 22px 0;
+    margin: 16px 0;
 }}
 
 /* Footer Note */
 .report-footer {{
-    margin-top: 36px;
-    padding-top: 14px;
+    margin-top: 14px;
+    padding-top: 8px;
     border-top: 2px solid #0f172a;
     display: flex;
     justify-content: space-between;
     font-size: 8.5pt;
     color: #64748b;
     font-weight: 600;
+    page-break-inside: avoid;
+    break-inside: avoid;
 }}
 </style>
 </head>
@@ -492,7 +523,6 @@ hr {{
         "--disable-gpu",
         "--no-pdf-header-footer",
         "--run-all-compositor-stages-before-draw",
-        "--virtual-time-budget=9000",
         f"--print-to-pdf={pdf_path}",
         html_path
     ]
@@ -505,6 +535,21 @@ hr {{
         print(f"PDF Size: {size_kb:.2f} KB")
         doc = pymupdf.open(pdf_path)
         print(f"Total Pages in Report: {len(doc)}")
+        
+        # Check text density of every page to guarantee no empty or sparse pages
+        sparse_pages = []
+        for i, page in enumerate(doc):
+            lines = [l.strip() for l in page.get_text().splitlines() if l.strip()]
+            # Filter out running header/footer
+            content_lines = [l for l in lines if not l.startswith("Page ") and not l.startswith("OmniClass LMS")]
+            if len(content_lines) < 4:
+                sparse_pages.append((i + 1, len(content_lines), content_lines))
+        
+        if sparse_pages:
+            print("WARNING: Found sparse pages:", sparse_pages)
+        else:
+            print("ALL PAGES HAVE SOLID DENSITY! Zero empty/sparse pages detected.")
+
         doc.close()
 
 if __name__ == "__main__":

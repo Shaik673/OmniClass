@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 320" width="750" height="320">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0f172a" flood-opacity="0.06"/>
+    </filter>
+  </defs>
+  <rect width="750" height="320" rx="10" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+
+  <!-- Tier 1: Access & Governance -->
+  <rect x="15" y="15" width="720" height="85" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="25" y="25" width="220" height="65" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="35" y="44" fill="#1e3a8a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">MODULE 1: User Authentication</text>
+  <text x="35" y="60" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Bcrypt Cost 12 &bull; JWT Cookies &bull; OAuth2</text>
+  <text x="35" y="75" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Role-based access &bull; Session invalidation</text>
+
+  <rect x="265" y="25" width="220" height="65" rx="6" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1"/>
+  <text x="275" y="44" fill="#1e3a8a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">MODULE 2: Student Dashboard</text>
+  <text x="275" y="60" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Recharts Analytics &bull; Enrolled Courses</text>
+  <text x="275" y="75" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Weekly study velocity &bull; Quick resume</text>
+
+  <rect x="505" y="25" width="220" height="65" rx="6" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="515" y="44" fill="#0f172a" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">MODULE 10: Admin Governance</text>
+  <text x="515" y="60" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Institutional KPIs &bull; Course Approvals</text>
+  <text x="515" y="75" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">User directory &bull; Branding controls</text>
+
+  <!-- Tier 2: Academic Curriculum -->
+  <rect x="15" y="112" width="720" height="85" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="25" y="122" width="165" height="65" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+  <text x="35" y="141" fill="#6d28d9" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">MODULE 3: Course Lifecycle</text>
+  <text x="35" y="157" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.2">Catalog CRUD &bull; Pro Pricing</text>
+  <text x="35" y="172" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="7.8">Approval queue workflow</text>
+
+  <rect x="202" y="122" width="165" height="65" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+  <text x="212" y="141" fill="#6d28d9" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">MODULE 4: Enrollment</text>
+  <text x="212" y="157" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.2">Free &amp; Razorpay Checkout</text>
+  <text x="212" y="172" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="7.8">Progress tracking &bull; Orders</text>
+
+  <rect x="380" y="122" width="165" height="65" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+  <text x="390" y="141" fill="#6d28d9" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">MODULE 5: 5 Modules</text>
+  <text x="390" y="157" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.2">Hierarchical Curriculum</text>
+  <text x="390" y="172" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="7.8">Sequential module unlocking</text>
+
+  <rect x="558" y="122" width="165" height="65" rx="6" fill="#f5f3ff" stroke="#ddd6fe" stroke-width="1"/>
+  <text x="568" y="141" fill="#6d28d9" font-family="Segoe UI, sans-serif" font-size="9.5" font-weight="700">MODULE 6: Learning Materials</text>
+  <text x="568" y="157" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.2">Rich Markdown &bull; Code Cards</text>
+  <text x="568" y="172" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="7.8">PDF links &amp; references</text>
+
+  <!-- Tier 3: Evaluation & Credentials -->
+  <rect x="15" y="210" width="720" height="95" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" filter="url(#shadow)"/>
+  <rect x="25" y="222" width="220" height="70" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="35" y="242" fill="#15803d" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">MODULE 7: Assignments</text>
+  <text x="35" y="260" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">Course assignments with deadlines</text>
+  <text x="35" y="275" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Rubric points &amp; grading criteria</text>
+
+  <rect x="265" y="222" width="220" height="70" rx="6" fill="#f0fdf4" stroke="#bbf7d0" stroke-width="1"/>
+  <text x="275" y="242" fill="#15803d" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">MODULE 8: Submissions</text>
+  <text x="275" y="260" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">GitHub repos, URLs &amp; commentary</text>
+  <text x="275" y="275" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Instructor scoring &amp; formative feedback</text>
+
+  <rect x="505" y="222" width="220" height="70" rx="6" fill="#fefce8" stroke="#fef08a" stroke-width="1"/>
+  <text x="515" y="242" fill="#854d0e" font-family="Segoe UI, sans-serif" font-size="10.5" font-weight="700">MODULE 9: Progress &amp; Certification</text>
+  <text x="515" y="260" fill="#475569" font-family="Segoe UI, sans-serif" font-size="8.5">30-MCQ Exam (&ge;70% pass criteria)</text>
+  <text x="515" y="275" fill="#64748b" font-family="Segoe UI, sans-serif" font-size="8">Verifiable A4 Certificate &bull; QR Code</text>
+</svg>
